@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_Move : EntityState
+public class Player_Move : Player_Ground_State
 {
     public Player_Move(Player player, StateMachine statemachine, string animBoolName) : base(player, statemachine, animBoolName)
     {

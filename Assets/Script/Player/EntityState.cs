@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class EntityState 
 {
-    protected Player player;
+    protected Player player; 
     protected StateMachine statemachine;
     protected string animBoolName;
     protected Animator anim;
@@ -26,10 +26,10 @@ public abstract class EntityState
     }
     public virtual void Update()
     {
-
+        anim.SetFloat("yVelocity", rb.linearVelocity.y);
     }
     public virtual void Exit()
     {
-        anim.SetBool(animBoolName, false);
+      anim.SetBool(animBoolName, false);
     }
 }
