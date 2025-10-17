@@ -14,6 +14,10 @@ public class Player_Idle : Player_Ground_State
     public override void Update()
     {
         base.Update();
+        if(player.MoveInput.x== player.FacingDirection && player.WallDetected)
+        {
+            return;
+        }
         if(player.MoveInput.x!=0)
         {
          statemachine.ChangeState(player.moveState);

@@ -12,19 +12,26 @@ public class Player : MonoBehaviour
     public Player_Move moveState { get; private set; }
     public Player_Jump jumpState { get; private set; }
     public Player_Fall fallState { get; private set; }
+    public Player_WallSlide wallSlideState { get; private set; }
+    public Player_WallJump wallJumpState {  get; private set; }
 
     [Header("Movement Settings")]
     public float Movespeed;
     public float JumpForce;
+    public Vector2 WallJumpForce;
     private bool facingRight = true;
-    public int FacingDirection { get; private set; } = 1;
+    public int FacingDirection { get; private set; } = 1; // Using this to detect walldetection
     [Range(0f, 1f)]
-    public float AirforceMultiplier;
+    public float AirforceMultiplier; //Multiplying with (player.Movespeed * player.AirforceMultiplier) in Aired State
 
-    [Header("Collision Detextion")]
+    [Header("Collision Detection")]
     [SerializeField] private LayerMask GroundLayer;
     [SerializeField] public bool Grounded;
     [SerializeField] public bool WallDetected;
+    public Transform PrimayWallCheck;
+    public Transform SeondaryWallCheck;
+    [Range(0f, 1f)]
+    public float WallSlideMultiplier;
     public float GroundCollisionDistance;
     public float WallCollisionDistance;
 
@@ -36,8 +43,11 @@ public class Player : MonoBehaviour
         input = new Player_Input();
         idleState = new Player_Idle(this,statemachine,"Idle");
         moveState = new Player_Move(this, statemachine, "Move");
+        //Using Blend state in Animator for the transition from Jump to fall in Animator 
         jumpState = new Player_Jump(this, statemachine, "Jump");
         fallState = new Player_Fall(this, statemachine, "Jump");
+        wallSlideState = new Player_WallSlide(this, statemachine, "WallSlide");
+        wallJumpState = new Player_WallJump(this, statemachine, "Jump");
 
     }
      void OnEnable()
@@ -69,7 +79,7 @@ public class Player : MonoBehaviour
         if ((MoveInput.x > 0 && !facingRight) || (MoveInput.x < 0 && facingRight))
         flip();
     }
-    void flip()
+    public void flip()
     {
         facingRight = !facingRight;
         Vector3 CurrentScale = transform.localScale;
@@ -80,12 +90,14 @@ public class Player : MonoBehaviour
    void collisionDetection()
     {
         Grounded = Physics2D.Raycast(transform.position, Vector2.down, GroundCollisionDistance, GroundLayer);
-        WallDetected = Physics2D.Raycast(transform.position, Vector2.right * FacingDirection, WallCollisionDistance, GroundLayer);
+        WallDetected = Physics2D.Raycast(PrimayWallCheck.position, Vector2.right * FacingDirection, WallCollisionDistance, GroundLayer) &&
+                       Physics2D.Raycast(SeondaryWallCheck.position, Vector2.right * FacingDirection, WallCollisionDistance, GroundLayer);
     }
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -GroundCollisionDistance, 0));
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3 (WallCollisionDistance*FacingDirection,0));
+        Gizmos.DrawLine(PrimayWallCheck.position, PrimayWallCheck.position + new Vector3 (WallCollisionDistance*FacingDirection,0));
+        Gizmos.DrawLine(SeondaryWallCheck.position, SeondaryWallCheck.position + new Vector3(WallCollisionDistance * FacingDirection, 0));
     }
 }
 

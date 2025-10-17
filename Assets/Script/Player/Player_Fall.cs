@@ -8,9 +8,17 @@ public class Player_Fall : Player_Aired_State
     public override void Update()
     {
         base.Update();
-        if(player.Grounded)
+      
+        if (player.Grounded)
         {
             statemachine.ChangeState(player.idleState);
         }
+        if (player.WallDetected)
+        {
+            //Debug.Log("wall Detected");
+            statemachine.ChangeState(player.wallSlideState);
+          
+        }
+
     }
 }

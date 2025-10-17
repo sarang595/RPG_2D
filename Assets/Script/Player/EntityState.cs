@@ -26,7 +26,8 @@ public abstract class EntityState
     }
     public virtual void Update()
     {
-        anim.SetFloat("yVelocity", rb.linearVelocity.y);
+        // "yVelocity is the threshold value for the jump and fall transition in Blend state
+        anim.SetFloat("yVelocity", rb.linearVelocity.y); 
     }
     public virtual void Exit()
     {

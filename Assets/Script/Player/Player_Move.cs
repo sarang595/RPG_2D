@@ -13,7 +13,7 @@ public class Player_Move : Player_Ground_State
     public override void Update()
     {
         base.Update();
-        if(player.MoveInput.x==0)
+        if(player.MoveInput.x==0 || player.WallDetected)
         {
             statemachine.ChangeState(player.idleState);
         }
