@@ -9,7 +9,7 @@ public class Player_WallJump : EntityState
     public override void Enter()
     {
         base.Enter();
-       
+       //player jump diagonal direction against the facing direction
         player.SetVelocity(player.WallJumpForce.x * -player.FacingDirection, player.WallJumpForce.y);
         player.flip();
     }

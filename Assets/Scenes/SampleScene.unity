@@ -498,7 +498,7 @@ MonoBehaviour:
   SeondaryWallCheck: {fileID: 3114707}
   WallSlideMultiplier: 0.186
   GroundCollisionDistance: 1.49
-  WallCollisionDistance: 0.9
+  WallCollisionDistance: 0.8
 --- !u!1 &1465819820
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +627,7 @@ Transform:
   m_GameObject: {fileID: 1465819820}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.35, y: -1.0639, z: 0}
+  m_LocalPosition: {x: -9.5, y: -1.0639, z: 0}
   m_LocalScale: {x: 2.4586012, y: 7.0017843, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -644,6 +644,7 @@ GameObject:
   - component: {fileID: 1495559816}
   - component: {fileID: 1495559818}
   - component: {fileID: 1495559817}
+  - component: {fileID: 1495559819}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -743,6 +744,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1495559819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495559815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0017ab45d64a0e345835435872cfdc4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1532694556
 GameObject:
   m_ObjectHideFlags: 0

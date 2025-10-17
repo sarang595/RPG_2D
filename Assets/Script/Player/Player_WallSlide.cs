@@ -29,10 +29,12 @@ public class Player_WallSlide : EntityState
         if(player.MoveInput.y <0)
         {
             //Debug.Log("Keypressed");
+            //when key pressed change slide speed to normal
             player.SetVelocity(player.MoveInput.x, rb.linearVelocity.y);
         }
         else
         {
+            //slow down the slide speed if no key is not pressed
             player.SetVelocity(player.MoveInput.x, rb.linearVelocity.y * player.WallSlideMultiplier);
         }
        

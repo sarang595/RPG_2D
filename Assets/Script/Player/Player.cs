@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public Player_Fall fallState { get; private set; }
     public Player_WallSlide wallSlideState { get; private set; }
     public Player_WallJump wallJumpState {  get; private set; }
+    public Player_Roll rollState {  get; private set; }
 
     [Header("Movement Settings")]
     public float Movespeed;
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour
     public Transform PrimayWallCheck;
     public Transform SeondaryWallCheck;
     [Range(0f, 1f)]
-    public float WallSlideMultiplier;
+    public float WallSlideMultiplier; //Multiplying with (player.MoveInput.x, rb.linearVelocity.y * player.WallSlideMultiplier) in wall slide state to control sliding speed
     public float GroundCollisionDistance;
     public float WallCollisionDistance;
 
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
         fallState = new Player_Fall(this, statemachine, "Jump");
         wallSlideState = new Player_WallSlide(this, statemachine, "WallSlide");
         wallJumpState = new Player_WallJump(this, statemachine, "Jump");
+        rollState = new Player_Roll(this, statemachine, "Roll");
 
     }
      void OnEnable()
@@ -68,6 +70,10 @@ public class Player : MonoBehaviour
     {
         collisionDetection();
         statemachine.CurrentState.Update();
+    }
+    public void CallAnimationTrigger()
+    {
+        statemachine.CurrentState.AnimationTigger();
     }
     public void SetVelocity (float Xvelocity, float Yvelocity)
     {
