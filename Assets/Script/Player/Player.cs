@@ -15,12 +15,16 @@ public class Player : MonoBehaviour
     public Player_WallSlide wallSlideState { get; private set; }
     public Player_WallJump wallJumpState {  get; private set; }
     public Player_Roll rollState {  get; private set; }
+    public Player_Basic_Attack basicAttackState { get; private set; }
 
     [Header("Movement Settings")]
     public float Movespeed;
     public float JumpForce;
+    public Vector2 AttackVelocity;
     public Vector2 WallJumpForce;
     private bool facingRight = true;
+    public float RollTimer { get;  set; }
+    public float RollCollDownTime = 1f;
     public int FacingDirection { get; private set; } = 1; // Using this to detect walldetection
     [Range(0f, 1f)]
     public float AirforceMultiplier; //Multiplying with (player.Movespeed * player.AirforceMultiplier) in Aired State
@@ -50,6 +54,7 @@ public class Player : MonoBehaviour
         wallSlideState = new Player_WallSlide(this, statemachine, "WallSlide");
         wallJumpState = new Player_WallJump(this, statemachine, "Jump");
         rollState = new Player_Roll(this, statemachine, "Roll");
+        basicAttackState = new Player_Basic_Attack(this, statemachine, "BasicAttack");
 
     }
      void OnEnable()
@@ -65,6 +70,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         statemachine.Initialize(idleState);
+        RollTimer = RollCollDownTime;
     }
     void Update()
     {
@@ -93,6 +99,7 @@ public class Player : MonoBehaviour
         transform.localScale = CurrentScale;
         FacingDirection = FacingDirection * -1;
     }
+
    void collisionDetection()
     {
         Grounded = Physics2D.Raycast(transform.position, Vector2.down, GroundCollisionDistance, GroundLayer);

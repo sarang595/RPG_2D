@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Playables;
 
 public abstract class EntityState 
 {
@@ -39,4 +40,11 @@ public abstract class EntityState
     {
         triggerCalled = true;
     }
+    protected void HandleStateExit(EntityState targetState)
+    {
+        // once the current state animation ends in the animator panel triggercalled and state will be changed
+        if (triggerCalled)
+            statemachine.ChangeState(targetState);
+    }
+
 }

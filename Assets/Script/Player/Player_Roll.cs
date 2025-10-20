@@ -8,18 +8,16 @@ public class Player_Roll : Player_Ground_State
     }
     public override void Enter()
     {
-        base.Enter();
-       
+       base.Enter();
+      //Reset Roll Timer 
+       player.RollTimer = player.RollCollDownTime;
+      // Debug.Log("Roll started. Cooldown: " + player.RollCollDownTime);
+
     }
     public override void Update()
     {
         base.Update();
-        
-        HandleStateExit();
+        HandleStateExit(player.idleState);
     }
-    private void HandleStateExit()
-    {
-        if (triggerCalled)
-        statemachine.ChangeState(player.idleState);
-    }
+   
 }

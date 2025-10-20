@@ -15,16 +15,25 @@ public class Player_Ground_State : EntityState
     public override void Update()
     {
         base.Update();
-      
-       
-        if(input.Player.Jump.WasCompletedThisFrame())
+        // Roll Coll Down Time calculation
+        if (player.RollTimer > 0)
+        {
+            player.RollTimer -= Time.deltaTime;
+        }
+
+        if (input.Player.Jump.WasCompletedThisFrame())
         {
             statemachine.ChangeState(player.jumpState);
         }
-       if(input.Player.Roll.WasCompletedThisFrame())
+       if(input.Player.Roll.WasCompletedThisFrame() && player.RollTimer <=0)
         {
          
             statemachine.ChangeState(player.rollState);
+        
+        }
+       if(input.Player.BasicAttack.WasCompletedThisFrame())
+        {
+            statemachine.ChangeState(player.basicAttackState);
         }
     }
 }
