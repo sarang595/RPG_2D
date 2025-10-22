@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_Jump_Attack : EntityState
+public class Player_Jump_Attack : Player_Aired_State
 {
     private bool groundtouched;
     public Player_Jump_Attack(Player player, StateMachine statemachine, string animBoolName) : base(player, statemachine, animBoolName)
