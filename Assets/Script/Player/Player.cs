@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public StateMachine statemachine { get; private set; }  
-    public Rigidbody2D rb {  get; private set; }
+    public StateMachine statemachine { get; private set; }
+    public Rigidbody2D rb { get; private set; }
     public Player_Input input { get; private set; }
     public Animator Playeranim { get; private set; }
 
@@ -13,18 +14,35 @@ public class Player : MonoBehaviour
     public Player_Jump jumpState { get; private set; }
     public Player_Fall fallState { get; private set; }
     public Player_WallSlide wallSlideState { get; private set; }
-    public Player_WallJump wallJumpState {  get; private set; }
-    public Player_Roll rollState {  get; private set; }
+    public Player_WallJump wallJumpState { get; private set; }
+    public Player_Roll rollState { get; private set; }
     public Player_Basic_Attack basicAttackState { get; private set; }
+    public Player_Dash_State dashState { get; private set; }
+    public Player_Jump_Attack jumpAttackState {  get; private set; }
+
+    [Header("Attack Settings")]
+    public Vector2[] AttackVelocity;
+    public Vector2 JumpAttackVelocity;
+    public float AttackVelocityDuration = .1f;
+    public float ComboResetTime = 1;
+    public float AttackTimer { get;  set; }
+    public float AttackCollDownTime = 1f;
+
+    [Header("Roll Settings")]
+    public float RollCollDownTime = 1f;
+    public float RollTimer { get; set; }
+
+    [Header("Dash Settings")]
+    public float DashDuration = 0.5f;
+    public float DashSpeed = 30f;
 
     [Header("Movement Settings")]
     public float Movespeed;
     public float JumpForce;
-    public Vector2 AttackVelocity;
     public Vector2 WallJumpForce;
     private bool facingRight = true;
-    public float RollTimer { get;  set; }
-    public float RollCollDownTime = 1f;
+   
+   
     public int FacingDirection { get; private set; } = 1; // Using this to detect walldetection
     [Range(0f, 1f)]
     public float AirforceMultiplier; //Multiplying with (player.Movespeed * player.AirforceMultiplier) in Aired State
@@ -39,7 +57,7 @@ public class Player : MonoBehaviour
     public float WallSlideMultiplier; //Multiplying with (player.MoveInput.x, rb.linearVelocity.y * player.WallSlideMultiplier) in wall slide state to control sliding speed
     public float GroundCollisionDistance;
     public float WallCollisionDistance;
-
+    private Coroutine AttackQeuedCo;
     void Awake()
     {
         Playeranim = GetComponentInChildren<Animator>();
@@ -55,7 +73,8 @@ public class Player : MonoBehaviour
         wallJumpState = new Player_WallJump(this, statemachine, "Jump");
         rollState = new Player_Roll(this, statemachine, "Roll");
         basicAttackState = new Player_Basic_Attack(this, statemachine, "BasicAttack");
-
+        dashState = new Player_Dash_State(this, statemachine, "Dash");
+        jumpAttackState = new Player_Jump_Attack(this, statemachine, "JumpAttack");
     }
      void OnEnable()
     {
@@ -77,9 +96,24 @@ public class Player : MonoBehaviour
         collisionDetection();
         statemachine.CurrentState.Update();
     }
+    public void EnterAttackStateWithDelay()
+    {
+        if(AttackQeuedCo!=null)
+        {
+            StopCoroutine(AttackQeuedCo);
+        }
+        AttackQeuedCo = StartCoroutine(EnterAttackStateDelayCo());
+    }
+   
+
+    private IEnumerator EnterAttackStateDelayCo()
+    {
+        yield return new WaitForEndOfFrame();
+        statemachine.ChangeState(basicAttackState);
+    }
     public void CallAnimationTrigger()
     {
-        statemachine.CurrentState.AnimationTigger();
+        statemachine.CurrentState.AnimationTrigger();
     }
     public void SetVelocity (float Xvelocity, float Yvelocity)
     {

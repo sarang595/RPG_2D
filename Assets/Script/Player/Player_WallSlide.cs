@@ -12,21 +12,32 @@ public class Player_WallSlide : EntityState
         handleWallSlide();
         if(input.Player.Jump.WasPerformedThisFrame())
         {
-            //Debug.Log("Wall Jump Pressed");
+          //Debug.Log("Wall Jump Pressed");
           statemachine.ChangeState(player.wallJumpState);
+
         }
-        if (!player.WallDetected && !player.Grounded)
+        if ((!player.WallDetected))
         {
          statemachine.ChangeState(player.fallState);
+        
         }
         if (player.Grounded)
         {
          statemachine.ChangeState(player.idleState);
+        
         }
+       
     }
     private void handleWallSlide()
     {
-        if(player.MoveInput.y <0)
+        if (player.MoveInput.x != 0)
+        {
+            if (player.MoveInput.x != player.FacingDirection)
+                // Debug.Log("Moved");
+                statemachine.ChangeState(player.fallState);
+        }
+
+        if (player.MoveInput.y <0)
         {
             //Debug.Log("Keypressed");
             //when key pressed change slide speed to normal

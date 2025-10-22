@@ -10,6 +10,8 @@ public abstract class EntityState
     protected Rigidbody2D rb;
     protected Player_Input input;
     protected bool triggerCalled;
+    protected float StateTimer;
+  
 
     public EntityState(Player player,StateMachine statemachine,string animBoolName)
     {
@@ -29,22 +31,38 @@ public abstract class EntityState
     }
     public virtual void Update()
     {
+        StateTimer -= Time.deltaTime;
         // "yVelocity is the threshold value for the jump and fall transition in Blend state
         anim.SetFloat("yVelocity", rb.linearVelocity.y); 
+
+        if(input.Player.Dash.WasPerformedThisFrame() && CanDash())
+        {
+            statemachine.ChangeState(player.dashState);
+        }
     }
     public virtual void Exit()
     {
       anim.SetBool(animBoolName, false);
     }
-    public void AnimationTigger()
+    public void AnimationTrigger()
     {
         triggerCalled = true;
+       
+        
     }
-    protected void HandleStateExit(EntityState targetState)
+    private bool CanDash()
     {
-        // once the current state animation ends in the animator panel triggercalled and state will be changed
-        if (triggerCalled)
-            statemachine.ChangeState(targetState);
+        if(player.WallDetected)
+        {
+
+            return false;
+        }
+        if(statemachine.CurrentState == player.dashState)
+        {
+            return false;
+        }
+        return true;
     }
+    
 
 }

@@ -17,7 +17,12 @@ public class Player_Roll : Player_Ground_State
     public override void Update()
     {
         base.Update();
-        HandleStateExit(player.idleState);
+        if(triggerCalled)
+        {
+          
+            statemachine.ChangeState(player.idleState);
+        }
+       
     }
    
 }
