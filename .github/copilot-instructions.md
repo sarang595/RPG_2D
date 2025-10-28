@@ -2,7 +2,7 @@
 - Project name: RPG_2D
 - Unity version: Unity 6000.0.33f1
 - Active game object:
-  - Name: Ground
+  - Name: Grid
   - Tag: Untagged
-  - Layer: Ground
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
