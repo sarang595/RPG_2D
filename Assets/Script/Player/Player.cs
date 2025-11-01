@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
     public Player_Input input { get; private set; }
     public Animator Playeranim { get; private set; }
+    public CapsuleCollider2D playerCollider2D { get; set; }
 
     public Vector2 MoveInput;
     public Player_Idle idleState { get; private set; }
@@ -31,6 +32,8 @@ public class Player : MonoBehaviour
     [Header("Roll Settings")]
     public float RollCollDownTime = 1f;
     public float RollTimer { get; set; }
+
+
 
     [Header("Dash Settings")]
     public float DashDuration = 0.5f;
@@ -63,6 +66,7 @@ public class Player : MonoBehaviour
         Playeranim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         statemachine = new StateMachine();
+        playerCollider2D = GetComponent<CapsuleCollider2D>();
         input = new Player_Input();
         idleState = new Player_Idle(this,statemachine,"Idle");
         moveState = new Player_Move(this, statemachine, "Move");

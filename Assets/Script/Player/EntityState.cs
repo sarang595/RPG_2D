@@ -9,6 +9,7 @@ public abstract class EntityState
     protected Animator anim;
     protected Rigidbody2D rb;
     protected Player_Input input;
+    protected CapsuleCollider2D collider;
     protected bool triggerCalled;
     protected float StateTimer;
   
@@ -20,6 +21,7 @@ public abstract class EntityState
         this.animBoolName = animBoolName;
         anim = player.Playeranim;
         rb = player.rb;
+        collider = player.playerCollider2D;
         input = player.input;
        
     }
