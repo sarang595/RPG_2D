@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player_AnimationTrigger : MonoBehaviour
+public class AnimationTrigger : MonoBehaviour
 {
     private Player player;
     private void Awake()

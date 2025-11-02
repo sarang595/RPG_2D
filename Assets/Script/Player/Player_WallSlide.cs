@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Player_WallSlide : EntityState
+public class Player_WallSlide : PlayerState
 {
     public Player_WallSlide(Player player, StateMachine statemachine, string animBoolName) : base(player, statemachine, animBoolName)
     {

@@ -11,7 +11,7 @@ public class StateMachine
         CurrentState = StartState;
         CurrentState.Enter();
     }
-  public void ChangeState( EntityState NewState )
+  public void ChangeState(EntityState NewState )
     {
         CurrentState.Exit();
         CurrentState = NewState;
