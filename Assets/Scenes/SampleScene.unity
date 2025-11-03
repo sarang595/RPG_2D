@@ -23187,6 +23187,8 @@ MonoBehaviour:
   AttackRange: 1.78
   AttackAnimationMultiplier: 1.15
   BattleTimeDuration: 5
+  BattleRetreatDistance: 1
+  BattleRetreatvelocity: {x: 7, y: 2}
   PlayerCheckDistance: 10
   playerChecker: {fileID: 1487380412}
   playerLayer:

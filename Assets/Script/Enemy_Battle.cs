@@ -32,9 +32,16 @@ public class Enemy_Battle : EnemyState
         {
             statemachine.ChangeState(enemy.IdleState);
         }
+       
         if (WithingAttackRange() && enemy.PlayerDetected())
         {
             statemachine.ChangeState(enemy.AttackState);
+
+        }
+        if(RetreatEnemy())
+        {
+            enemy.SetVelocity(enemy.BattleRetreatvelocity.x * -DirectionToPlayer(), enemy.BattleRetreatvelocity.y);
+            enemy.handleFlip(DirectionToPlayer());
 
         }
 
@@ -45,9 +52,11 @@ public class Enemy_Battle : EnemyState
      
    
     }
+
     private void updateBattleTimer() => lastTimewasInBattle = Time.time;
     private bool BattleTimeisOver() => Time.time > lastTimewasInBattle + enemy.BattleTimeDuration;
     private bool WithingAttackRange() => DistanceToPlayer() <= enemy.AttackRange;
+    private bool RetreatEnemy() => DistanceToPlayer() <= enemy.BattleRetreatDistance;
     private float DistanceToPlayer()
     {
         if (player == null)
