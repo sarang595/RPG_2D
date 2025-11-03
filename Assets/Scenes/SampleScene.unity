@@ -23184,11 +23184,11 @@ MonoBehaviour:
   IdleTimer: 2
   MoveSpeed: 3
   BattleSpeed: 5
-  AttackRange: 1.78
+  AttackRange: 2
   AttackAnimationMultiplier: 1.15
   BattleTimeDuration: 5
-  BattleRetreatDistance: 1
-  BattleRetreatvelocity: {x: 7, y: 2}
+  minRetreatDistance: 1.5
+  Retreat: {x: 0, y: 0}
   PlayerCheckDistance: 10
   playerChecker: {fileID: 1487380412}
   playerLayer:

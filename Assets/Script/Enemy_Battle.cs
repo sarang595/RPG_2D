@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Enemy_Battle : EnemyState
 {
@@ -8,7 +9,7 @@ public class Enemy_Battle : EnemyState
     private const float verticalThreshold = 1; // To avoid retreat when player "y" pos changing
     public Enemy_Battle(Enemy enemy, StateMachine statemachine, string animBoolName) : base(enemy, statemachine, animBoolName)
     {
-     
+
     }
     public override void Enter()
     {
@@ -17,10 +18,19 @@ public class Enemy_Battle : EnemyState
         {
             player = enemy.PlayerDetected().transform;
         }
+        if (EnemyRetreat())
+        {
+            rb.linearVelocity = new Vector2(enemy.Retreat.x * -DirectionToPlayer(), enemy.Retreat.y);
+            enemy.handleFlip(DirectionToPlayer());
+            //Debug.Log(stateMachine.currentState);
+
+        }
+
     }
     public override void Update()
     {
         base.Update();
+
         if (enemy.PlayerDetected())
         {
             updateBattleTimer();
@@ -33,8 +43,8 @@ public class Enemy_Battle : EnemyState
         }
 
         // If player is too high above, do nothing or handle differently
-       
-        if (verticalDistance() > verticalThreshold) 
+
+        if (verticalDistance() > verticalThreshold)
         {
             enemy.SetVelocity(0, rb.linearVelocity.y); // Enemy stands still or idle
             return;
@@ -42,15 +52,20 @@ public class Enemy_Battle : EnemyState
 
         if (WithingAttackRange() && enemy.PlayerDetected())
         {
+
             statemachine.ChangeState(enemy.AttackState);
             return;
         }
-
-        if (RetreatEnemy())
+        // Handle retreat BEFORE normal movement
+        if (EnemyRetreat())
         {
-            enemy.SetVelocity(enemy.BattleRetreatvelocity.x * -DirectionToPlayer(), rb.linearVelocity.y);
+            // Move away from player
+            enemy.SetVelocity(enemy.Retreat.x * -DirectionToPlayer(), rb.linearVelocity.y);
             enemy.handleFlip(DirectionToPlayer());
         }
+
+
+
         else
         {
             // Enemy moves towards player only if not retreating
@@ -65,7 +80,7 @@ public class Enemy_Battle : EnemyState
     private bool BattleTimeisOver() => Time.time > lastTimewasInBattle + enemy.BattleTimeDuration;
     private bool WithingAttackRange() => DistanceToPlayer() <= enemy.AttackRange;
     private float verticalDistance() => player.position.y - enemy.transform.position.y;
-    private bool RetreatEnemy() => DistanceToPlayer() <= enemy.BattleRetreatDistance;
+    private bool EnemyRetreat() => DistanceToPlayer() < enemy.minRetreatDistance;
     private float DistanceToPlayer()
     {
         if (player == null)
@@ -78,13 +93,15 @@ public class Enemy_Battle : EnemyState
         if (player == null) return 0;
 
         float horizontalDistance = player.position.x - enemy.transform.position.x;
-        float threshold = 0.1f; 
+        float threshold = 0.1f;
 
         if (Mathf.Abs(horizontalDistance) < threshold)
             return 0;
 
         return horizontalDistance > 0 ? 1 : -1;
     }
-   
+
 
 }
+
+

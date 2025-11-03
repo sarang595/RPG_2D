@@ -20,8 +20,9 @@ public class Enemy : Entity
     public float AttackRange;
     public float AttackAnimationMultiplier;
     public float BattleTimeDuration = 5f;
-    public float BattleRetreatDistance = 1f;
-    public Vector2 BattleRetreatvelocity;
+    public float minRetreatDistance = 1.5f;
+    public Vector2 Retreat;
+
     [SerializeField] private float PlayerCheckDistance;
     [SerializeField] private Transform playerChecker;
     [SerializeField] private LayerMask playerLayer;
