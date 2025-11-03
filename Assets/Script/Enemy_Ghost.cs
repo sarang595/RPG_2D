@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy_Ghost : Enemy
 {
     private bool ghostFacingRight = false;
+ 
     protected override void Awake()
     {
         base.Awake();

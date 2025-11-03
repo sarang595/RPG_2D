@@ -57,20 +57,21 @@ public  class Entity : MonoBehaviour
         rb.linearVelocity = new Vector2(Xvelocity, Yvelocity);
         handleFlip(Xvelocity);
     }
-    void handleFlip(float XVelocity)
+   public void handleFlip(float XVelocity)
     {
         if ((XVelocity > 0 && !facingRight) || (XVelocity < 0 && facingRight))
             flip();
     }
     public void flip()
     {
+        Debug.Log("flipping");
         facingRight = !facingRight;
         Vector3 CurrentScale = transform.localScale;
         int Orientation = defaultfacingRight ? 1 : -1; // Since Enemy Sprite is facing left default turning sprite right here
         CurrentScale.x = Mathf.Abs(CurrentScale.x) * Orientation * (facingRight ? 1 : -1);
         transform.localScale = CurrentScale;
         FacingDirection = FacingDirection * -1;
-  
+
     }
 
     void collisionDetection()

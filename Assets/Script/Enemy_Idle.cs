@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy_Idle : EnemyState
+public class Enemy_Idle : Enemy_Grounded
 {
     public Enemy_Idle(Enemy enemy, StateMachine statemachine, string animBoolName) : base(enemy, statemachine, animBoolName)
     {
@@ -9,6 +9,7 @@ public class Enemy_Idle : EnemyState
     public override void Enter()
     {
         base.Enter();
+       
         StateTimer = enemy.IdleTimer;
         //Debug.Log(enemy.WallDetected);
         //Debug.Log(enemy.Grounded);
