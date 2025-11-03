@@ -64,7 +64,7 @@ public  class Entity : MonoBehaviour
     }
     public void flip()
     {
-        Debug.Log("flipping");
+        //Debug.Log("flipping");
         facingRight = !facingRight;
         Vector3 CurrentScale = transform.localScale;
         int Orientation = defaultfacingRight ? 1 : -1; // Since Enemy Sprite is facing left default turning sprite right here

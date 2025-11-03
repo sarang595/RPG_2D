@@ -8,10 +8,13 @@ public class Enemy_Grounded : EnemyState
     public override void Update()
     {
         base.Update();
-        if(enemy.PlayerDetected())
+        if(enemy.PlayerDetected() )
         {
-            Debug.Log("player detectd" + statemachine.CurrentState);
+            
             statemachine.ChangeState(enemy.BattleState);
+            
         }
+        
+
     }
 }

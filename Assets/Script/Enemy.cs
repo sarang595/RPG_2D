@@ -43,10 +43,10 @@ public class Enemy : Entity
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(playerChecker.position, new Vector3(playerChecker.position.x + PlayerCheckDistance * FacingDirection, playerChecker.position.y));
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(playerChecker.position, new Vector3(playerChecker.position.x + AttackRange * FacingDirection, playerChecker.position.y));
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawLine(playerChecker.position, new Vector3(playerChecker.position.x + PlayerCheckDistance * FacingDirection, playerChecker.position.y));
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawLine(playerChecker.position, new Vector3(playerChecker.position.x + AttackRange * FacingDirection, playerChecker.position.y));
     }
     
 

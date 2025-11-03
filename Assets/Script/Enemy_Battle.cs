@@ -5,6 +5,7 @@ public class Enemy_Battle : EnemyState
 {
     public Transform player;
     private float lastTimewasInBattle;
+    private const float verticalThreshold = 1; // To avoid retreat when player "y" pos changing
     public Enemy_Battle(Enemy enemy, StateMachine statemachine, string animBoolName) : base(enemy, statemachine, animBoolName)
     {
      
@@ -24,38 +25,46 @@ public class Enemy_Battle : EnemyState
         {
             updateBattleTimer();
         }
+
         if (BattleTimeisOver())
         {
             statemachine.ChangeState(enemy.IdleState);
+            return;
         }
-        if(!WithingAttackRange() && enemy.WallDetected)
-        {
-            statemachine.ChangeState(enemy.IdleState);
-        }
+
+        // If player is too high above, do nothing or handle differently
        
+        if (verticalDistance() > verticalThreshold) 
+        {
+            enemy.SetVelocity(0, rb.linearVelocity.y); // Enemy stands still or idle
+            return;
+        }
+
         if (WithingAttackRange() && enemy.PlayerDetected())
         {
             statemachine.ChangeState(enemy.AttackState);
-
+            return;
         }
-        if(RetreatEnemy())
+
+        if (RetreatEnemy())
         {
-            enemy.SetVelocity(enemy.BattleRetreatvelocity.x * -DirectionToPlayer(), enemy.BattleRetreatvelocity.y);
+            enemy.SetVelocity(enemy.BattleRetreatvelocity.x * -DirectionToPlayer(), rb.linearVelocity.y);
             enemy.handleFlip(DirectionToPlayer());
-
+        }
+        else
+        {
+            // Enemy moves towards player only if not retreating
+            enemy.SetVelocity(enemy.BattleSpeed * DirectionToPlayer(), rb.linearVelocity.y);
+            enemy.handleFlip(DirectionToPlayer());
         }
 
-        else
 
-        // Enemy have to move towards player
-        enemy.SetVelocity(enemy.BattleSpeed * DirectionToPlayer(), rb.linearVelocity.y);
-     
-   
     }
 
     private void updateBattleTimer() => lastTimewasInBattle = Time.time;
     private bool BattleTimeisOver() => Time.time > lastTimewasInBattle + enemy.BattleTimeDuration;
     private bool WithingAttackRange() => DistanceToPlayer() <= enemy.AttackRange;
+    private float verticalDistance() => player.position.y - enemy.transform.position.y;
     private bool RetreatEnemy() => DistanceToPlayer() <= enemy.BattleRetreatDistance;
     private float DistanceToPlayer()
     {
@@ -66,11 +75,15 @@ public class Enemy_Battle : EnemyState
     }
     public int DirectionToPlayer()
     {
-        if(player == null)
-        {
+        if (player == null) return 0;
+
+        float horizontalDistance = player.position.x - enemy.transform.position.x;
+        float threshold = 0.1f; 
+
+        if (Mathf.Abs(horizontalDistance) < threshold)
             return 0;
-        }
-       return player.position.x > enemy.transform.position.x ? 1 : -1;
+
+        return horizontalDistance > 0 ? 1 : -1;
     }
    
 
