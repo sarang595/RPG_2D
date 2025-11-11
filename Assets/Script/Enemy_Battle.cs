@@ -22,7 +22,6 @@ public class Enemy_Battle : EnemyState
         {
             rb.linearVelocity = new Vector2(enemy.Retreat.x * -DirectionToPlayer(), enemy.Retreat.y);
             enemy.handleFlip(DirectionToPlayer());
-            //Debug.Log(stateMachine.currentState);
 
         }
 
@@ -30,6 +29,7 @@ public class Enemy_Battle : EnemyState
     public override void Update()
     {
         base.Update();
+
 
         if (enemy.PlayerDetected())
         {
@@ -56,16 +56,16 @@ public class Enemy_Battle : EnemyState
             statemachine.ChangeState(enemy.AttackState);
             return;
         }
-        // Handle retreat BEFORE normal movement
+        //// Handle retreat BEFORE normal movement
         if (EnemyRetreat())
         {
-            // Move away from player
-            enemy.SetVelocity(enemy.Retreat.x * -DirectionToPlayer(), rb.linearVelocity.y);
+           // Enemy moves away from player if the player is too close 
+            rb.linearVelocity = new Vector2(enemy.Retreat.x * -DirectionToPlayer(), rb.linearVelocity.y);
             enemy.handleFlip(DirectionToPlayer());
+            statemachine.ChangeState(enemy.AttackState);
+          
         }
-
-
-
+      
         else
         {
             // Enemy moves towards player only if not retreating
