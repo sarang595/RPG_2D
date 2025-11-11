@@ -60,7 +60,7 @@ public class Enemy_Battle : EnemyState
         if (EnemyRetreat())
         {
            // Enemy moves away from player if the player is too close 
-            rb.linearVelocity = new Vector2(enemy.Retreat.x * -DirectionToPlayer(), rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(enemy.Retreat.x * -DirectionToPlayer(), enemy.Retreat.y);
             enemy.handleFlip(DirectionToPlayer());
             statemachine.ChangeState(enemy.AttackState);
           
