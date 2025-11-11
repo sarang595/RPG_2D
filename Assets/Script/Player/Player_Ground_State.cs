@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class Player_Ground_State : EntityState
+public class Player_Ground_State : PlayerState
 {
-
-
     public Player_Ground_State(Player player, StateMachine statemachine, string animBoolName) : base(player, statemachine, animBoolName)
     {
     }
@@ -27,8 +25,7 @@ public class Player_Ground_State : EntityState
        if(input.Player.Roll.WasCompletedThisFrame() && player.RollTimer <=0)
         {
          
-            statemachine.ChangeState(player.rollState);
-        
+            statemachine.ChangeState(player.rollState);       
         }
        if(input.Player.BasicAttack.WasCompletedThisFrame() && player.AttackTimer <=0)
         {
