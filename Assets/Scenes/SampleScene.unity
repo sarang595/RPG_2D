@@ -17771,6 +17771,7 @@ GameObject:
   - component: {fileID: 867750195}
   - component: {fileID: 867750196}
   - component: {fileID: 867750197}
+  - component: {fileID: 867750198}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -17794,6 +17795,7 @@ Transform:
   - {fileID: 1495559816}
   - {fileID: 1532694557}
   - {fileID: 3114707}
+  - {fileID: 1117670894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &867750195
@@ -17899,6 +17901,24 @@ MonoBehaviour:
   JumpForce: 23
   WallJumpForce: {x: 12, y: 14}
   AirforceMultiplier: 0.8
+--- !u!114 &867750198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867750193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f22c73b3a744349bf4f0f9ba646708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetCollider: []
+  Target: {fileID: 1117670894}
+  TargetRadius: 1
+  WhatisTarget:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &926047988
 GameObject:
   m_ObjectHideFlags: 0
@@ -22694,6 +22714,37 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1117670893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1117670894}
+  m_Layer: 7
+  m_Name: TargetCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1117670894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117670893}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.71, y: -0.24, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 867750194}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1127938812
 GameObject:
   m_ObjectHideFlags: 0
@@ -23184,11 +23235,11 @@ MonoBehaviour:
   IdleTimer: 2
   MoveSpeed: 3
   BattleSpeed: 5
-  AttackRange: 2
+  AttackRange: 3
   AttackAnimationMultiplier: 1.15
   BattleTimeDuration: 5
   minRetreatDistance: 1.5
-  Retreat: {x: 0, y: 0}
+  Retreat: {x: 5, y: 3}
   PlayerCheckDistance: 10
   playerChecker: {fileID: 1487380412}
   playerLayer:
