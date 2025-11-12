@@ -17773,6 +17773,7 @@ GameObject:
   - component: {fileID: 867750197}
   - component: {fileID: 867750198}
   - component: {fileID: 867750199}
+  - component: {fileID: 867750200}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -17934,6 +17935,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 100
   IsDead: 0
+--- !u!114 &867750200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867750193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 751689f7590602849ac6ff783ce871be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Vfxmat: {fileID: 2100000, guid: 7a614c831a468be47bf9d8ed0200f419, type: 2}
+  VfxDuration: 0.07
 --- !u!1 &926047988
 GameObject:
   m_ObjectHideFlags: 0
@@ -23202,6 +23217,7 @@ GameObject:
   - component: {fileID: 1487380415}
   - component: {fileID: 1487380416}
   - component: {fileID: 1487380417}
+  - component: {fileID: 1487380418}
   m_Layer: 8
   m_Name: Enemy_Ghost
   m_TagString: Untagged
@@ -23254,10 +23270,10 @@ MonoBehaviour:
   MoveSpeed: 3
   BattleSpeed: 5
   AttackRange: 3
-  AttackAnimationMultiplier: 1.15
+  AttackAnimationMultiplier: 1.06
   BattleTimeDuration: 5
   minRetreatDistance: 1.5
-  Retreat: {x: 5, y: 3}
+  Retreat: {x: 6, y: 3}
   PlayerCheckDistance: 10
   playerChecker: {fileID: 1487380412}
   playerLayer:
@@ -23354,11 +23370,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1487380411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42d3341a5c6075f4caf249df7ae25b0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 060a1dfce9034c6409ef5b4477d3c08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHp: 100
   IsDead: 0
+--- !u!114 &1487380418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487380411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 751689f7590602849ac6ff783ce871be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Vfxmat: {fileID: 2100000, guid: 7a614c831a468be47bf9d8ed0200f419, type: 2}
+  VfxDuration: 0.07
 --- !u!1 &1495559815
 GameObject:
   m_ObjectHideFlags: 0
