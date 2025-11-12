@@ -23,11 +23,30 @@ public class Enemy : Entity
     public float minRetreatDistance = 1.5f;
     public Vector2 Retreat;
 
+    [Header("Player Detection")]
     [SerializeField] private float PlayerCheckDistance;
     [SerializeField] private Transform playerChecker;
     [SerializeField] private LayerMask playerLayer;
+    public Transform player { get; private set; }
 
+    public void TryEnteringBattle(Transform player)
+    {
+        if (statemachine.CurrentState == BattleState || statemachine.CurrentState == AttackState)
+        {
+            return;
+        }
+        this.player = player;
+        statemachine.ChangeState(BattleState);
 
+    }
+    public Transform GetPlayerReference()
+    {
+        if (player == null)
+        {
+            player = PlayerDetected().transform;
+        }
+        return player;
+    }
 
 
     public RaycastHit2D PlayerDetected()
@@ -39,7 +58,8 @@ public class Enemy : Entity
         }
         return hit;
     }
-  
+   
+    
 
     protected override void OnDrawGizmos()
     {
