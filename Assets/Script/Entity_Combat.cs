@@ -1,17 +1,22 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Entity_Combat : MonoBehaviour
-{ 
+{
+    public float damage;
+    [Header("Target Detection")]
     [SerializeField] Transform Target;
     [SerializeField] float TargetRadius;
     [SerializeField] LayerMask WhatisTarget;
+    
 
     public void PerformAttack()
     {
         GetDetectedColliders();
-        foreach (Collider2D collider in GetDetectedColliders())
+        foreach (Collider2D Target in GetDetectedColliders())
         {
-            Debug.Log("Attacking" + collider.name);
+           Entity_Health entity_Health = Target.GetComponent<Entity_Health>();
+            entity_Health.TakeDamage(damage);
         }
     }
 
