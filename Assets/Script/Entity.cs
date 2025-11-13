@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public  class Entity : MonoBehaviour
@@ -28,6 +29,8 @@ public  class Entity : MonoBehaviour
     public float WallSlideMultiplier; //Multiplying with (player.MoveInput.x, rb.linearVelocity.y * player.WallSlideMultiplier) in wall slide state to control sliding speed
     public float GroundCollisionDistance;
     public float WallCollisionDistance;
+    private bool isKnocked;
+    private Coroutine KnockBackCO;
     
     protected virtual void Awake()
     {
@@ -52,8 +55,27 @@ public  class Entity : MonoBehaviour
     {
         statemachine.CurrentState.AnimationTrigger();
     }
+
+    public void ReceiveKnockBack(Vector2 knockbackVelocity, float duration)
+    {
+        if(KnockBackCO  != null)
+        {
+            StopCoroutine(KnockBackCO );
+        }
+        KnockBackCO = StartCoroutine(knockbackCo(knockbackVelocity,duration));
+    }
+    private IEnumerator knockbackCo(Vector2 knockbackVelocity, float duration)
+    {
+        isKnocked = true;
+        rb.linearVelocity = knockbackVelocity;
+        yield return new WaitForSeconds(duration);
+        rb.linearVelocity = Vector2.zero;
+        isKnocked = false;
+    }
     public void SetVelocity(float Xvelocity, float Yvelocity)
     {
+        if (isKnocked)
+        return;
         rb.linearVelocity = new Vector2(Xvelocity, Yvelocity);
         handleFlip(Xvelocity);
     }

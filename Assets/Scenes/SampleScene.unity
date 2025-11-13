@@ -17935,6 +17935,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 100
   IsDead: 0
+  KnockPower: {x: 3, y: 2}
+  KnockDuration: 0.2
 --- !u!114 &867750200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23270,7 +23272,7 @@ MonoBehaviour:
   MoveSpeed: 3
   BattleSpeed: 5
   AttackRange: 3
-  AttackAnimationMultiplier: 1.2
+  AttackAnimationMultiplier: 0.9
   BattleTimeDuration: 5
   minRetreatDistance: 1.5
   Retreat: {x: 6, y: 3}
@@ -23375,6 +23377,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 100
   IsDead: 0
+  KnockPower: {x: 6, y: 2}
+  KnockDuration: 0.12
 --- !u!114 &1487380418
 MonoBehaviour:
   m_ObjectHideFlags: 0
