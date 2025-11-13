@@ -4,9 +4,11 @@ using UnityEngine.UIElements;
 
 public class Enemy_Battle : EnemyState
 {
+    
     public Transform player;
     private float lastTimewasInBattle;
-    private const float verticalThreshold = 1; // To avoid retreat when player "y" pos changing
+    private const float verticalThreshold =3; // To avoid retreat when player "y" pos changing
+    private const float IdleStateholdDuration = 0.5f;
     public Enemy_Battle(Enemy enemy, StateMachine statemachine, string animBoolName) : base(enemy, statemachine, animBoolName)
     {
 
@@ -41,17 +43,11 @@ public class Enemy_Battle : EnemyState
 
         if (BattleTimeisOver())
         {
+           
             statemachine.ChangeState(enemy.IdleState);
             return;
         }
-
-        // If player is too high above, do nothing or handle differently
-
-        if (verticalDistance() > verticalThreshold)
-        {
-            enemy.SetVelocity(0, rb.linearVelocity.y); // Enemy stands still or idle
-            return;
-        }
+    
 
         if (WithingAttackRange() && enemy.PlayerDetected())
         {
@@ -59,16 +55,27 @@ public class Enemy_Battle : EnemyState
             statemachine.ChangeState(enemy.AttackState);
             return;
         }
+
         //// Handle retreat BEFORE normal movement
         if (EnemyRetreat())
         {
-           // Enemy moves away from player if the player is too close 
+        
+            // Enemy moves away from player if the player is too close 
             rb.linearVelocity = new Vector2(enemy.Retreat.x * -DirectionToPlayer(), enemy.Retreat.y);
             enemy.handleFlip(DirectionToPlayer());
             statemachine.ChangeState(enemy.AttackState);
-          
+            return;
         }
-      
+
+        if (verticalDistance() > verticalThreshold)
+        {
+            // Enemy stands still or idle waiting to avoid rapid change of state from attack to idle
+           
+            enemy.IdleStateRecieverco(IdleStateholdDuration);
+            return;
+
+        }
+
         else
         {
             // Enemy moves towards player only if not retreating

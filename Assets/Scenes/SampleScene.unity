@@ -23270,7 +23270,7 @@ MonoBehaviour:
   MoveSpeed: 3
   BattleSpeed: 5
   AttackRange: 3
-  AttackAnimationMultiplier: 1.06
+  AttackAnimationMultiplier: 1.2
   BattleTimeDuration: 5
   minRetreatDistance: 1.5
   Retreat: {x: 6, y: 3}

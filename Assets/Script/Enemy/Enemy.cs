@@ -22,6 +22,8 @@ public class Enemy : Entity
     public float BattleTimeDuration = 5f;
     public float minRetreatDistance = 1.5f;
     public Vector2 Retreat;
+    private Coroutine VerticalthersholdCo;
+
 
     [Header("Player Detection")]
     [SerializeField] private float PlayerCheckDistance;
@@ -58,8 +60,21 @@ public class Enemy : Entity
         }
         return hit;
     }
-   
-    
+    public void IdleStateRecieverco(float duration)
+    {
+        if(VerticalthersholdCo!=null)
+        {
+            StopCoroutine(VerticalthersholdCo);
+            VerticalthersholdCo = StartCoroutine(HoldIdleState(duration));
+        }
+
+    }
+    private IEnumerator HoldIdleState(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        statemachine.ChangeState(IdleState);
+    }
+
 
     protected override void OnDrawGizmos()
     {
@@ -70,6 +85,5 @@ public class Enemy : Entity
         //Gizmos.DrawLine(playerChecker.position, new Vector3(playerChecker.position.x + AttackRange * FacingDirection, playerChecker.position.y));
     }
     
-
-
+    
 }
