@@ -17883,7 +17883,7 @@ MonoBehaviour:
   WallDetected: 0
   GroundCheck: {fileID: 867750194}
   PrimayWallCheck: {fileID: 1532694557}
-  SecondaryWallCheck: {fileID: 0}
+  SecondaryWallCheck: {fileID: 3114707}
   WallSlideMultiplier: 0.186
   GroundCollisionDistance: 1.49
   WallCollisionDistance: 0.8
@@ -17915,7 +17915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f22c73b3a744349bf4f0f9ba646708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 35
   Target: {fileID: 1117670894}
   TargetRadius: 1
   WhatisTarget:
@@ -17933,10 +17933,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d3341a5c6075f4caf249df7ae25b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentHp: 0
   MaxHp: 100
   IsDead: 0
   KnockPower: {x: 3, y: 2}
   KnockDuration: 0.2
+  HeavyKnockPower: {x: 7, y: 7}
+  HeavyKnockDuration: 0.5
+  HeavyKnockBackThreshold: 0.3
 --- !u!114 &867750200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23272,7 +23276,7 @@ MonoBehaviour:
   MoveSpeed: 3
   BattleSpeed: 5
   AttackRange: 3
-  AttackAnimationMultiplier: 0.9
+  AttackAnimationMultiplier: 0.7
   BattleTimeDuration: 5
   minRetreatDistance: 1.5
   Retreat: {x: 6, y: 3}
@@ -23375,10 +23379,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060a1dfce9034c6409ef5b4477d3c08a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentHp: 0
   MaxHp: 100
   IsDead: 0
   KnockPower: {x: 6, y: 2}
   KnockDuration: 0.12
+  HeavyKnockPower: {x: 7, y: 7}
+  HeavyKnockDuration: 0.5
+  HeavyKnockBackThreshold: 0.3
 --- !u!114 &1487380418
 MonoBehaviour:
   m_ObjectHideFlags: 0
