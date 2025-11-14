@@ -50,7 +50,10 @@ public  class Entity : MonoBehaviour
         collisionDetection();
         statemachine.CurrentState.Update();
     }
-    
+    public virtual void EntityDeath()
+    {
+
+    }
     public void CallAnimationTrigger()
     {
         statemachine.CurrentState.AnimationTrigger();

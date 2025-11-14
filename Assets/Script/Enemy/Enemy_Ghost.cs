@@ -11,6 +11,7 @@ public class Enemy_Ghost : Enemy
         MoveState = new Enemy_Move(this, statemachine, "Move");
         AttackState = new Enemy_Attack(this, statemachine, "Attack");
         BattleState = new Enemy_Battle(this, statemachine, "Battle");
+        DeadthState = new Enemy_Death(this, statemachine, "Idle");
     }
     protected override void Start()
     {

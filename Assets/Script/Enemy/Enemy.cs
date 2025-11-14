@@ -10,6 +10,7 @@ public class Enemy : Entity
     public  Enemy_Move MoveState;
     public Enemy_Attack AttackState;
     public Enemy_Battle BattleState;
+    public Enemy_Death DeadthState;
 
     [Header("Movement Settings")]
     public float IdleTimer;
@@ -49,7 +50,11 @@ public class Enemy : Entity
         }
         return player;
     }
-
+    public override void EntityDeath()
+    {
+        base.EntityDeath();
+        statemachine.ChangeState(DeadthState);
+    }
 
     public RaycastHit2D PlayerDetected()
     {

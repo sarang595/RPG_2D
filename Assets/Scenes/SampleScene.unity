@@ -17915,7 +17915,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f22c73b3a744349bf4f0f9ba646708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 35
+  damage: 50
   Target: {fileID: 1117670894}
   TargetRadius: 1
   WhatisTarget:
