@@ -36,7 +36,7 @@ public class Entity_Health : MonoBehaviour
     private void ReduceHP(float damage)
     {
         CurrentHp -= damage;
-        if(CurrentHp < 0)
+        if(CurrentHp <= 0)
         {
             Die();
         }

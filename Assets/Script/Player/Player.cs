@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class Player : Entity
     public Player_Input input { get; private set; }
 
     public Vector2 MoveInput;
+    public static event Action OnPlayerDeath;
     public Player_Idle idleState { get; private set; }
     public Player_Move moveState { get; private set; }
     public Player_Jump jumpState { get; private set; }
@@ -16,6 +18,7 @@ public class Player : Entity
     public Player_Basic_Attack basicAttackState { get; private set; }
     public Player_Dash_State dashState { get; private set; }
     public Player_Jump_Attack jumpAttackState { get; private set; }
+    public Player_Death_State deathState { get; private set; }
 
     [Header("Attack Settings")]
     public Vector2[] AttackVelocity;
@@ -61,6 +64,7 @@ public class Player : Entity
         basicAttackState = new Player_Basic_Attack(this, statemachine, "BasicAttack");
         dashState = new Player_Dash_State(this, statemachine, "Dash");
         jumpAttackState = new Player_Jump_Attack(this, statemachine, "JumpAttack");
+        deathState = new Player_Death_State(this, statemachine, "Dead");
     }
 
     protected override void Start()
@@ -77,7 +81,12 @@ public class Player : Entity
         }
         AttackQeuedCo = StartCoroutine(EnterAttackStateDelayCo());
     }
-
+    public override void EntityDeath()
+    {
+        base.EntityDeath();
+        OnPlayerDeath?.Invoke();
+        statemachine.ChangeState(deathState);
+    }
 
     private IEnumerator EnterAttackStateDelayCo()
     {

@@ -2,7 +2,7 @@
 - Project name: RPG_2D
 - Unity version: Unity 6000.0.33f1
 - Active game object:
-  - Name: Player
+  - Name: Enemy_Ghost
   - Tag: Untagged
-  - Layer: Player
+  - Layer: Enemy
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

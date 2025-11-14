@@ -55,6 +55,10 @@ public class Enemy : Entity
         base.EntityDeath();
         statemachine.ChangeState(DeadthState);
     }
+    private void HandlePlayerDeath()
+    {
+        statemachine.ChangeState(IdleState);
+    }
 
     public RaycastHit2D PlayerDetected()
     {
@@ -89,6 +93,12 @@ public class Enemy : Entity
         //Gizmos.color = Color.red;
         //Gizmos.DrawLine(playerChecker.position, new Vector3(playerChecker.position.x + AttackRange * FacingDirection, playerChecker.position.y));
     }
-    
-    
+    private void OnEnable()
+    {
+        Player.OnPlayerDeath += HandlePlayerDeath;
+    }
+    private void OnDisable()
+    {
+        Player.OnPlayerDeath -= HandlePlayerDeath;
+    }
 }
