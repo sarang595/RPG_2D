@@ -45,10 +45,10 @@ public  class Entity : MonoBehaviour
     {
        
     }
-    void Update()
+    protected virtual void Update()
     {
         collisionDetection();
-        statemachine.CurrentState.Update();
+        statemachine.UpdateActiveState();
     }
     public virtual void EntityDeath()
     {

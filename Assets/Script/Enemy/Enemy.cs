@@ -11,6 +11,7 @@ public class Enemy : Entity
     public Enemy_Attack AttackState;
     public Enemy_Battle BattleState;
     public Enemy_Death DeadthState;
+    public Enemy_Stunned StunnedState;
 
     [Header("Movement Settings")]
     public float IdleTimer;
@@ -25,6 +26,11 @@ public class Enemy : Entity
     public Vector2 Retreat;
     private Coroutine VerticalthersholdCo;
 
+    [Header("Stunned Settings")]
+    [SerializeField] public Vector2 StunnedVelocity;
+    [SerializeField] public float StunnedDuration;
+    [SerializeField] protected bool CanStunned;
+
 
     [Header("Player Detection")]
     [SerializeField] private float PlayerCheckDistance;
@@ -32,6 +38,7 @@ public class Enemy : Entity
     [SerializeField] private LayerMask playerLayer;
     public Transform player { get; private set; }
 
+    public void EnableCounterWindow(bool enable) => CanStunned = enable;
     public void TryEnteringBattle(Transform player)
     {
         if (statemachine.CurrentState == BattleState || statemachine.CurrentState == AttackState)

@@ -21,6 +21,10 @@ public class StateMachine
         CurrentState = NewState;
         CurrentState.Enter();
     }
+    public void UpdateActiveState()
+    {
+        CurrentState.Update();
+    }
     public void SwitchOffStateMachine()
     {
         CanChangeState = false;

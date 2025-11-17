@@ -1,9 +1,11 @@
 using UnityEngine;
 
-public class Enemy_Ghost : Enemy
+public class Enemy_Ghost : Enemy, ICounterable
 {
     private bool ghostFacingRight = false;
- 
+
+  
+
     protected override void Awake()
     {
         base.Awake();
@@ -12,6 +14,7 @@ public class Enemy_Ghost : Enemy
         AttackState = new Enemy_Attack(this, statemachine, "Attack");
         BattleState = new Enemy_Battle(this, statemachine, "Battle");
         DeadthState = new Enemy_Death(this, statemachine, "Idle");
+        StunnedState = new Enemy_Stunned(this, statemachine, "Stunned");
     }
     protected override void Start()
     {
@@ -23,6 +26,21 @@ public class Enemy_Ghost : Enemy
         }
         statemachine.Initialize(IdleState);
     }
-    
+    protected override void Update()
+    {
+        base.Update();
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+
+        HandleCounterAttack();
+        }
+    }
+  
+    public void HandleCounterAttack()
+    {
+        if (CanStunned == false)
+            return;
+        statemachine.ChangeState(StunnedState);
+    }
 
 }
