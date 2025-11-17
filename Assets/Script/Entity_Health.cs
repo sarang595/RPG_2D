@@ -2,7 +2,7 @@ using System;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
-public class Entity_Health : MonoBehaviour
+public class Entity_Health : MonoBehaviour, IDamageable
 {
     private Entity_Vfx entityVfx;
     private Entity entity;

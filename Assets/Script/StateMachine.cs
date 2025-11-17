@@ -15,7 +15,7 @@ public class StateMachine
   public void ChangeState(EntityState NewState )
     {
         if (CanChangeState == false)
-        return;
+            return;
 
         CurrentState.Exit();
         CurrentState = NewState;
