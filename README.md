@@ -1,5 +1,9 @@
 # RPG Player Controller - State Machine Implementation
 
+
+https://github.com/user-attachments/assets/dea4c0e8-4d02-44df-b67c-b65cbd8521ad
+
+
 ## 🎮 Overview
 
 A scalable, maintainable player controller system for an RPG game, built using the **State Machine design pattern**. This architecture ensures centralized state management while allowing seamless transitions between player states without conflicts.
