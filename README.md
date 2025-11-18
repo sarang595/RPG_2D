@@ -171,10 +171,10 @@ Every system is designed to extend easily without refactoring:
 
 Each feature branch contains its own detailed README:
 
-- **[Player State Machine](./docs/player-state-machine.md)** - Input, combos, animation
-- **[Parallax Background](./docs/parallax-background.md)** - Depth, scrolling, camera
-- **[Enemy State Machine](./docs/enemy-state-machine.md)** - AI, unified architecture
-- **[Combat System](./docs/combat-system.md)** - Damage, knockback, feedback
+- **[Player State Machine](https://github.com/sarang595/RPG_2D/tree/Player_Statemachine?tab=readme-ov-file)** - Input, combos, animation
+- **[Parallax Background](https://github.com/sarang595/RPG_2D/tree/CameraSetup-%26-Level)** - Depth, scrolling, camera
+- **[Enemy State Machine](https://github.com/sarang595/RPG_2D/tree/Enemy_StateMachine)** - AI, unified architecture
+- **[Combat System](https://github.com/sarang595/RPG_2D/tree/Combat_System))** - Damage, knockback, feedback
 
 ## 🤝 Contributing
 
