@@ -27,9 +27,9 @@ Idle → Move → Jump → Fall → Attack → Combo → ...
 ```
 
 Each state defines:
-- Entry behavior (OnEnter)
-- Frame update logic (OnUpdate)
-- Exit behavior (OnExit)
+- Entry behavior (Enter)
+- Frame update logic (Update)
+- Exit behavior (Exit)
 - Valid transitions to other states
 
 ### Core Components
