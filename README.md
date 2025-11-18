@@ -147,26 +147,6 @@ Every system is designed to extend easily without refactoring:
 - [ ] UI/HUD Implementation
 - [ ] Particle Effects & Polish
 
-## 🎮 How to Run
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   ```
-
-2. **Open in Unity**
-   - Unity 2022.3 LTS or later
-   - Open the project folder
-
-3. **Play Demo Level**
-   - Open `Scenes/DemoLevel.unity`
-   - Press Play to test all systems
-
-4. **Controls**
-   - Movement: WASD / Arrow Keys / Left Stick
-   - Jump: Space / A Button
-   - Attack: Left Click / X Button
-
 ## 📚 Branch Documentation
 
 Each feature branch contains its own detailed README:
@@ -186,7 +166,7 @@ MIT License - Feel free to learn from and reference this code.
 
 ## 👤 Developer
 
-**[Your Name]**
+**[Saran G]**
 - Focused on clean architecture and scalable game systems
 - Applying OOP principles and design patterns in Unity
 - Building modular, maintainable code for complex gameplay
