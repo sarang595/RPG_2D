@@ -20,14 +20,14 @@ A **modular 2D RPG** built in Unity, focusing on clean architecture, scalable sy
 - Smooth animation blending with Blend Trees
 - Combo attack system with Sub-State Machines
 - Animation Event-driven combat timing
-- **Branch:** `(https://github.com/sarang595/RPG_2D/tree/Player_Statemachine?tab=readme-ov-file)`
+- **Branch:** `(feature/player-state-machine)`
 
 ### ✅ Parallax & Endless Background
 - Multi-layer parallax scrolling for visual depth
 - Seamless endless background system
 - Cinemachine integration for professional camera control
 - Optimized Tilemap system with collision compositing
-- **Branch:** `(https://github.com/sarang595/RPG_2D/tree/CameraSetup-%26-Level)`
+- **Branch:** `(feature/parallax-endless-background)`
 
 ### ✅ Enemy State Machine & AI
 - Unified Entity-based architecture
@@ -35,7 +35,7 @@ A **modular 2D RPG** built in Unity, focusing on clean architecture, scalable sy
 - Multiple enemy type support (Patrol, Chase, Attack states)
 - Scalable design for bosses and special enemy types
 - Demo level for testing interactions
-- **Branch:** `(https://github.com/sarang595/RPG_2D/tree/Enemy_StateMachine)`
+- **Branch:** `(feature/enemy-state-machine)`
 
 ### ✅ Modular Combat System
 - Precision entity detection with Physics2D
@@ -43,7 +43,7 @@ A **modular 2D RPG** built in Unity, focusing on clean architecture, scalable sy
 - Dynamic knockback system (health-ratio based)
 - Visual feedback with material flash effects
 - Integrated death states with physics variations
-- **Branch:** `(https://github.com/sarang595/RPG_2D/tree/Combat_System)`
+- **Branch:** `(feature/combat-system)`
 
 ## 🏗️ Architecture Highlights
 
