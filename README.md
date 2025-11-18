@@ -1,4 +1,8 @@
 🎯 Overview
+
+https://github.com/user-attachments/assets/2db3597a-f026-404f-9dc9-a6460fe220f7
+
+
 A unified state machine architecture that powers both player and multiple enemy types within a single, scalable framework. Rather than building from scratch, this system extends the existing Player State Machine through strategic refactoring focused on reusability and maintainability.
 💡 Core Innovation
 Instead of separate systems → One architecture, multiple entities
